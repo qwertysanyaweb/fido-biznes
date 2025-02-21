@@ -1,0 +1,84 @@
+<div class="documents__title">
+  <h2>Входящие документы</h2>
+  <button mat-flat-button (click)="createDocument()">Добавить новый документ</button>
+</div>
+<table
+  [dataSource]="dataSource"
+  mat-table
+  matSort
+  matSortDisableClear
+  matSortDirection="desc"
+>
+  <ng-container [matColumnDef]="DOCUMENT_FORM_CONTROLS.ATTACHMENT">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header disableClear>Файл</th>
+    <td *matCellDef="let element" mat-cell>
+      <a
+        [href]="element[DOCUMENT_FORM_CONTROLS.ATTACHMENT]?.fileBase64"
+        target="_blank"
+      >{{ element[DOCUMENT_FORM_CONTROLS.ATTACHMENT]?.fileName }}</a
+      >
+    </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="DOCUMENT_FORM_CONTROLS.REGISTRATION_NUMBER">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header>Регистрационный №</th>
+    <td *matCellDef="let element" mat-cell>{{ element[DOCUMENT_FORM_CONTROLS.REGISTRATION_NUMBER] }}</td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="DOCUMENT_FORM_CONTROLS.DATE_OF_REGISTRATION">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header>Дата регистрации</th>
+    <td *matCellDef="let element" mat-cell>
+      {{ convertDate(element[DOCUMENT_FORM_CONTROLS.DATE_OF_REGISTRATION]) }}
+    </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="DOCUMENT_FORM_CONTROLS.OUTGOING_DOCUMENT_NUMBER">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header>№ исходящего документа</th>
+    <td *matCellDef="let element" mat-cell>{{ element[DOCUMENT_FORM_CONTROLS.OUTGOING_DOCUMENT_NUMBER] }}</td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="DOCUMENT_FORM_CONTROLS.DATE_OUTGOING_DOCUMENT">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header>Дата исходящего документа</th>
+    <td *matCellDef="let element" mat-cell>
+      {{ convertDate(element[DOCUMENT_FORM_CONTROLS.DATE_OUTGOING_DOCUMENT]) }}
+    </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="DOCUMENT_FORM_CONTROLS.CORRESPONDENT">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header>Корреспондент</th>
+    <td *matCellDef="let element" mat-cell>
+      {{ getCorrespondentType(element[DOCUMENT_FORM_CONTROLS.CORRESPONDENT]) }}
+    </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="DOCUMENT_FORM_CONTROLS.SUBJECT">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header>Тема</th>
+    <td *matCellDef="let element" mat-cell>{{ element[DOCUMENT_FORM_CONTROLS.SUBJECT] }}</td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="'control'">
+    <th *matHeaderCellDef mat-header-cell></th>
+    <td *matCellDef="let element" mat-cell style="width: 1%">
+      <div style="display: flex; gap: 20px; padding: 10px 0;">
+        <button mat-mini-fab type="button" aria-label="Print">
+          <mat-icon>print</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          type="button"
+          aria-label="Delete"
+          (click)="removeDocument(element[DOCUMENT_FORM_CONTROLS.ID])"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr
+    *matRowDef="let row; columns: displayedColumns"
+    mat-row
+    (dblclick)="editDocument(row[DOCUMENT_FORM_CONTROLS.ID])"
+  ></tr>
+</table>

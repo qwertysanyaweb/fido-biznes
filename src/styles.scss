@@ -1,0 +1,79 @@
+@use "bootstrap/scss/bootstrap" as *;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-mdc-form-field-required-marker {
+  color: var(--mdc-filled-text-field-error-label-text-color, var(--mat-sys-error));
+}
+
+textarea {
+  min-height: 150px;
+}
+
+.formGroup {
+  &-error {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: var(--mdc-filled-text-field-error-label-text-color, var(--mat-sys-error));
+    font-size: 12px;
+  }
+}
+
+.mat-mdc-text-field-wrapper {
+  overflow: visible !important;
+}
+
+.file-upload {
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    a {
+      flex-grow: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  &-info {
+    display: flex;
+    gap: 10px;
+    white-space: nowrap;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+
+.error-message {
+  color: var(--mdc-filled-text-field-error-label-text-color, var(--mat-sys-error));
+  font-size: 12px;
+  margin-top: 10px;
+}

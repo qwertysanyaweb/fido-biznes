@@ -1,0 +1,15 @@
+export const DOCUMENT_FORM_CONTROLS = {
+  ID: 'id',
+  ATTACHMENT: 'attachment',
+  REGISTRATION_NUMBER: 'registration_number',
+  DATE_OF_REGISTRATION: 'date_of_registration',
+  OUTGOING_DOCUMENT_NUMBER: 'outgoing_document_number',
+  DATE_OUTGOING_DOCUMENT: 'date_outgoing_document',
+  DELIVERY: 'delivery',
+  CORRESPONDENT: 'correspondent',
+  SUBJECT: 'subject',
+  DESCRIPTION: 'description',
+  DUE_DATE: 'due_date',
+  ACCESS: 'access',
+  CONTROL: 'control',
+} as const;
