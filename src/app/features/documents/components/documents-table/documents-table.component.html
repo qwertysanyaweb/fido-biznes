@@ -60,7 +60,7 @@
     <th *matHeaderCellDef mat-header-cell></th>
     <td *matCellDef="let element" mat-cell style="width: 1%">
       <div style="display: flex; gap: 20px; padding: 10px 0;">
-        <button mat-mini-fab type="button" aria-label="Print">
+        <button mat-mini-fab type="button" aria-label="Print" (click)="print(element[DOCUMENT_FORM_CONTROLS.ID])">
           <mat-icon>print</mat-icon>
         </button>
         <button

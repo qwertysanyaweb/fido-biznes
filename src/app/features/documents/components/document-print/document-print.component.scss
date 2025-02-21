@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  padding: 20px;
+}
+
+.row {
+  gap: 0;
+  margin: 0;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+
+  > div {
+    padding: 10px;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+
+
+  }
+}
+
+strong {
+  font-weight: 500;
+}

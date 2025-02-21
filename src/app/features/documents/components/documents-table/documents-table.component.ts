@@ -12,6 +12,7 @@ import {DocumentFormComponent} from '../document-form/document-form.component';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSort, MatSortHeader} from '@angular/material/sort';
 import {Subscription} from 'rxjs';
+import {DocumentPrintComponent} from '../document-print/document-print.component';
 
 
 @Component({
@@ -104,6 +105,10 @@ export class DocumentsTableComponent implements OnInit, OnDestroy {
     this.documentsService.removeDocument(id);
   }
 
+  public print(id: number): void {
+    this.dialog.open(DocumentPrintComponent, {data: {id}, maxWidth: 800});
+  }
+
   public getCorrespondentType(id: number): string {
     return this.correspondentTypes.find((correspondent) => correspondent.id === id)?.label || '';
   }
@@ -115,4 +120,5 @@ export class DocumentsTableComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
+
 }

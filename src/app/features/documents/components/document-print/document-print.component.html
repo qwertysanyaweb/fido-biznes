@@ -1,0 +1,78 @@
+<h4>Печатная форма документа</h4>
+<div class="row">
+  <div class="col-md-6">
+    <strong>Регистрационный №:</strong>
+    {{ document[DOCUMENT_FORM_CONTROLS.REGISTRATION_NUMBER] }}
+  </div>
+  <div class="col-md-6">
+    <strong>Дата регистрации:</strong>
+    {{ convertDate(document[DOCUMENT_FORM_CONTROLS.DATE_OF_REGISTRATION]) }}
+  </div>
+  @if (document[DOCUMENT_FORM_CONTROLS.OUTGOING_DOCUMENT_NUMBER]) {
+    <div class="col-md-6">
+      <strong>№ исходящего документа:</strong>
+      {{ document[DOCUMENT_FORM_CONTROLS.OUTGOING_DOCUMENT_NUMBER] }}
+    </div>
+  }
+  @if (document[DOCUMENT_FORM_CONTROLS.DATE_OUTGOING_DOCUMENT]) {
+    <div class="col-md-6">
+      <strong>Дата исходящего документа:</strong>
+      {{ convertDate(document[DOCUMENT_FORM_CONTROLS.DATE_OUTGOING_DOCUMENT]!) }}
+    </div>
+  }
+  <div class="col-md-6">
+    <strong>Форма доставки:</strong>
+    {{ getReferenceValue(document[DOCUMENT_FORM_CONTROLS.DELIVERY], deliveryMethods) }}
+  </div>
+  <div class="col-md-6">
+    <strong>Корреспондент:</strong>
+    {{ getReferenceValue(document[DOCUMENT_FORM_CONTROLS.CORRESPONDENT], correspondentTypes) }}
+  </div>
+  <div class="col-12">
+    <strong>Тема:</strong> <br>
+    {{ document[DOCUMENT_FORM_CONTROLS.SUBJECT] }}
+  </div>
+  <div class="col-12">
+    <strong>Описание:</strong> <br>
+    {{ document[DOCUMENT_FORM_CONTROLS.DESCRIPTION] }}
+  </div>
+  @if (document[DOCUMENT_FORM_CONTROLS.DUE_DATE]) {
+    <div class="col-12">
+      <strong>Срок исполнения:</strong> <br>
+      {{ convertDate(document[DOCUMENT_FORM_CONTROLS.DUE_DATE]) }}
+    </div>
+  }
+  @if (document[DOCUMENT_FORM_CONTROLS.ACCESS]) {
+    <div class="col-12">
+      <mat-checkbox
+        class="example-margin"
+        disabled
+        [checked]="document[DOCUMENT_FORM_CONTROLS.ACCESS]"
+      >
+        Доступ
+      </mat-checkbox>
+    </div>
+  }
+  @if (document[DOCUMENT_FORM_CONTROLS.CONTROL]) {
+    <div class="col-12">
+      <mat-checkbox
+        class="example-margin"
+        disabled
+        [checked]="document[DOCUMENT_FORM_CONTROLS.CONTROL]"
+      >
+        Контроль
+      </mat-checkbox>
+    </div>
+  }
+  @if (document[DOCUMENT_FORM_CONTROLS.ATTACHMENT]?.fileName) {
+    <div class="col-12">
+      <strong>Название документа:</strong> <br>
+      {{ document[DOCUMENT_FORM_CONTROLS.ATTACHMENT]?.fileName }}
+    </div>
+  }
+
+</div>
+<div style="display: flex; justify-content: flex-end; padding-top:20px;">
+  <button type="button" mat-stroked-button (click)="dialogRef.close()">Закрыть</button>
+</div>
+
